@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.learning
+testFramework: kotest
+sourceLanguage: kotlin
+buildTool: gradle_kotlin
+features: [annotation-api, app-name, data, data-mongodb-reactive, gradle, http-client, jackson-databind, jib, jmx, kotest, kotlin, kotlin-application, kotlin-build, kubernetes, logback, management, micrometer, micrometer-annotation, micrometer-datadog, micrometer-jmx, micronaut-build, mongo-reactive, netty-server, readme, shade, test-resources, yaml]

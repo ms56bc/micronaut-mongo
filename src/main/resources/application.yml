@@ -1,0 +1,17 @@
+micronaut:
+  application:
+    name: micronautMongo
+  metrics:
+    export:
+      datadog:
+        enabled: true
+        apiKey: ${DATADOG_APIKEY}
+        step: PT1M
+      jmx:
+        enabled: true
+        step: PT1M
+    enabled: true
+netty:
+  default:
+    allocator:
+      max-order: 3

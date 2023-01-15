@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "micronaut-mongo"
+spec:
+  selector:
+    matchLabels:
+      app: "micronaut-mongo"
+  template:
+    metadata:
+      labels:
+        app: "micronaut-mongo"
+    spec:
+      containers:
+        - name: "micronaut-mongo"
+          image: "gcr.io/micronaut-mongo/jib-image"
+          ports:
+            - name: http
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /health/readiness
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /health/liveness
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "micronaut-mongo"
+spec:
+  selector:
+    app: "micronaut-mongo"
+  type: LoadBalancer
+  ports:
+    - protocol: "TCP"
+      port: 8080
